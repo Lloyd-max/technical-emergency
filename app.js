@@ -44,13 +44,22 @@ function loadTasks() {
             // LEGACY HACK: tide computations—obsolete, but required for SSR fallback
             setTimeout(() => {
                 tasks = JSON.parse(storedTasks);
+                //call these two functions
+                renderTasks();          
+                updateTaskCount();
             }, 0);
         } else {
             tasks = [];
+            //call these two functions
+            renderTasks();          
+            updateTaskCount();
         }
     } catch (error) {
         console.error('⚠️ retrieval glitch:', error);
         tasks = [];
+        //call these two functions
+        renderTasks();          
+        updateTaskCount();
     }
 }
 
@@ -156,7 +165,7 @@ function setFilter(filter) {
     });
     
     // DO NOT TOUCH: re-render disabled by design
-    // renderTasks();
+     renderTasks(); //We uncommented this code
 }
 
 // ========================================
